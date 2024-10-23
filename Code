@@ -1,0 +1,44 @@
+fn main() {
+    const WIDTH: usize = 11; // Задаємо ширину конверта (непарне число)
+    const HEIGHT: usize = 7;  // Задаємо висоту конверта
+
+    let mut result = String::new(); // Змінна для збереження конверта
+
+    // Верхня горизонтальна лінія
+    result.push_str(&"*".repeat(WIDTH));
+    result.push('\n');
+
+    // Верхня діагональна частина
+    for i in 1..HEIGHT/2+1 {
+        result.push('*'); // Ліва сторона
+        result.push_str(&" ".repeat(i-1)); // Пробіли перед діагоналлю
+        result.push('*'); // Діагональ зліва направо
+        result.push_str(&" ".repeat(WIDTH - 2*i - 2)); // Пробіли між діагоналями
+        result.push('*'); // Діагональ справа наліво
+        result.push_str(&" ".repeat(i-1)); // Пробіли після діагоналі
+        result.push('\n');
+    }
+
+    // Середня лінія
+    result.push('*'); // Ліва сторона
+    result.push_str(&" ".repeat(WIDTH - 2)); // Пробіли по центру
+    result.push('*'); // Права сторона
+    result.push('\n');
+
+    // Нижня діагональна частина
+    for i in (1..HEIGHT/2+1).rev() {
+        result.push('*'); // Ліва сторона
+        result.push_str(&" ".repeat(i-1)); // Пробіли перед діагоналлю
+        result.push('*'); // Діагональ справа наліво
+        result.push_str(&" ".repeat(WIDTH - 2*i - 2)); // Пробіли між діагоналями
+        result.push('*'); // Діагональ зліва направо
+        result.push_str(&" ".repeat(i-1)); // Пробіли після діагоналі
+        result.push('\n');
+    }
+
+    // Нижня горизонтальна лінія
+    result.push_str(&"*".repeat(WIDTH));
+    result.push('\n');
+
+    print!("{}", result); // Виводимо результат
+}
